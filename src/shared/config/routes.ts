@@ -1,10 +1,16 @@
 import { defineRouting } from 'next-intl/routing'
-import { locales } from '../model/i18n.types'
+import { locales } from '@/shared/model'
 
-const PROFILE_ROUTE = '/profile/:slug'
+const INTERVIEW = '/interview'
 
 export const ROUTES = {
-  HOME: '/'
+  HOME: '/',
+  DASHBOARD: '/dashboard',
+  AI_ENGINEER: `${INTERVIEW}/ai-engineer`,
+  AI_HR: `${INTERVIEW}/ai-hr`,
+  INTERVIEWER: INTERVIEW,
+  ANALYZER_RESUME: '/analyzer-resume',
+  SETTINGS: '/settings'
 } as const
 
 export const defaultLocale = 'en'

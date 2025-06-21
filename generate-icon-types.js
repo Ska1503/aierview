@@ -4,12 +4,6 @@ const path = require('path')
 const ICONS_DIR = path.join(__dirname, './public/assets/icons')
 const OUTPUT_FILE = path.join(__dirname, './src/shared/model/icons.types.ts')
 
-/**
- * Recursively reads all `.svg` files in the provided directory, including nested folders.
- *
- * @param {string} dir - The directory to scan for SVG files.
- * @returns {string[]} - An array of SVG file paths relative to ICONS_DIR.
- */
 function getAllSvgIcons(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true })
 
@@ -25,16 +19,13 @@ function getAllSvgIcons(dir) {
   return files
 }
 
-/**
- * Generates TypeScript types and an interface for available icons.
- */
 function generateIconTypes() {
   const svgFiles = getAllSvgIcons(ICONS_DIR)
 
   // Map file paths to TypeScript-safe strings and create a union type
   const iconTypes = svgFiles
     .map(file => {
-      return `"${file.replace(/\.svg$/, '').replace(/\\/g, '/')}"`
+      return `'${file.replace(/\.svg$/, '').replace(/\\/g, '/')}'`
     })
     .join(' | ')
 
